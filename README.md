@@ -1,6 +1,6 @@
 # BMW IT Internship DataGrid Project
 
-This project is part of a BMW IT Internship test. It demonstrates a generic data grid built with React and Material UI that integrates with an Express backend and MongoDB. The application features server-side pagination, search, filtering, and actions such as view and delete for car records. It also includes a details page that displays all fields from a selected car.
+This project is part of a BMW IT Internship test. It demonstrates a generic data grid built with React and MUI that integrates with an Express.js backend and MongoDB. The application features server-side pagination, search, filtering, and actions such as view and delete for car records. It also includes a details page that displays all fields from a selected car.
 
 ---
 
@@ -33,10 +33,3 @@ This project is part of a BMW IT Internship test. It demonstrates a generic data
 - MongoDB (local instance or MongoDB Atlas)
 
 ---
-
-### Backend Setup
-
-1. **Navigate to the backend directory**:
-   ```bash
-   cd backend
-   ```

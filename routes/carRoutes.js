@@ -67,42 +67,6 @@ router.get('/search', async (req, res) => {
 });
 
 // Filter cars by column-specific criteria
-// router.get('/filter', async (req, res) => {
-//   const { column, operator, value } = req.query;
-
-//   if (!column || !operator || !value) {
-//     return res.status(400).json({ error: 'Column, operator, and value are required' });
-//   }
-
-//   let query = {};
-//   switch (operator) {
-//     case 'contains':
-//       query[column] = { $regex: value, $options: 'i' };
-//       break;
-//     case 'equals':
-//       query[column] = value;
-//       break;
-//     case 'starts_with':
-//       query[column] = { $regex: `^${value}`, $options: 'i' };
-//       break;
-//     case 'ends_with':
-//       query[column] = { $regex: `${value}$`, $options: 'i' };
-//       break;
-//     case 'is_empty':
-//       query[column] = { $in: [null, ''] };
-//       break;
-//     default:
-//       return res.status(400).json({ error: 'Invalid operator' });
-//   }
-
-//   try {
-//     const cars = await Car.find(query);
-//     res.json({ data: cars });
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
-
 router.get('/filter', async (req, res) => {
   const { column, operator, value } = req.query;
 
