@@ -67,30 +67,112 @@ router.get('/search', async (req, res) => {
 });
 
 // Filter cars by column-specific criteria
+// router.get('/filter', async (req, res) => {
+//   const { column, operator, value } = req.query;
+
+//   if (!column || !operator || !value) {
+//     return res.status(400).json({ error: 'Column, operator, and value are required' });
+//   }
+
+//   let query = {};
+//   switch (operator) {
+//     case 'contains':
+//       query[column] = { $regex: value, $options: 'i' };
+//       break;
+//     case 'equals':
+//       query[column] = value;
+//       break;
+//     case 'starts_with':
+//       query[column] = { $regex: `^${value}`, $options: 'i' };
+//       break;
+//     case 'ends_with':
+//       query[column] = { $regex: `${value}$`, $options: 'i' };
+//       break;
+//     case 'is_empty':
+//       query[column] = { $in: [null, ''] };
+//       break;
+//     default:
+//       return res.status(400).json({ error: 'Invalid operator' });
+//   }
+
+//   try {
+//     const cars = await Car.find(query);
+//     res.json({ data: cars });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
+
 router.get('/filter', async (req, res) => {
   const { column, operator, value } = req.query;
 
-  if (!column || !operator || !value) {
-    return res.status(400).json({ error: 'Column, operator, and value are required' });
+  // For 'is_empty' we don't need a value.
+  if (!column || !operator || (operator !== 'is_empty' && (value === undefined || value === null || value === ''))) {
+    return res.status(400).json({ error: 'Column, operator, and value are required (except for is_empty)' });
   }
 
   let query = {};
+
   switch (operator) {
     case 'contains':
-      query[column] = { $regex: value, $options: 'i' };
+      query = {
+        $expr: {
+          $regexMatch: {
+            input: { $toString: `$${column}` },
+            regex: value,
+            options: 'i'
+          }
+        }
+      };
       break;
+
     case 'equals':
-      query[column] = value;
+      query = {
+        $expr: {
+          $regexMatch: {
+            input: { $trim: { input: { $toString: `$${column}` } } },
+            regex: `^${value.trim()}$`,
+            options: 'i'
+          }
+        }
+      };
       break;
+
     case 'starts_with':
-      query[column] = { $regex: `^${value}`, $options: 'i' };
+      query = {
+        $expr: {
+          $regexMatch: {
+            input: { $toString: `$${column}` },
+            regex: `^${value}`,
+            options: 'i'
+          }
+        }
+      };
       break;
+
     case 'ends_with':
-      query[column] = { $regex: `${value}$`, $options: 'i' };
+      query = {
+        $expr: {
+          $regexMatch: {
+            input: { $trim: { input: { $toString: `$${column}` } } },
+            regex: `${value.trim()}$`,
+            options: 'i'
+          }
+        }
+      };
       break;
+
     case 'is_empty':
-      query[column] = { $in: [null, ''] };
+      // Check for missing, null, or empty string values
+      query = {
+        $or: [
+          { [column]: { $exists: false } },
+          { [column]: null },
+          { [column]: '' }
+        ]
+      };
       break;
+
     default:
       return res.status(400).json({ error: 'Invalid operator' });
   }
@@ -102,6 +184,7 @@ router.get('/filter', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 // Get details of a specific car by ID
 router.get('/:id', async (req, res) => {
