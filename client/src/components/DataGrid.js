@@ -6,7 +6,7 @@ import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material
 
 const CarDataGrid = () => {
   // Data/Pagination states
-  const BASE_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5001";
+  const BASE_URL = process.env.REACT_APP_BACKEND_URL;
   const navigate = useNavigate();
   const [cars, setCars] = useState([]);
   const [page, setPage] = useState(1);
