@@ -6,6 +6,7 @@ import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material
 
 const CarDataGrid = () => {
   // Data/Pagination states
+  const BASE_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5001";
   const navigate = useNavigate();
   const [cars, setCars] = useState([]);
   const [page, setPage] = useState(1);
@@ -25,7 +26,7 @@ const CarDataGrid = () => {
   // Fetch cars from backend
   const fetchCars = async () => {
     try {
-      const url = `http://localhost:5001/api/cars?page=${page}&limit=${pageSize}`;
+      const url = `${BASE_URL}/api/cars?page=${page}&limit=${pageSize}`;
       const response = await fetch(url);
       const data = await response.json();
       setCars(data.data);
@@ -42,7 +43,7 @@ const CarDataGrid = () => {
   // Handle search
   const handleSearch = async () => {
     try {
-      const response = await fetch(`http://localhost:5001/api/cars/search?q=${search}`);
+      const response = await fetch(`${BASE_URL}/api/cars/search?q=${search}`);
       const data = await response.json();
       setCars(data.data);
     } catch (error) {
@@ -54,7 +55,7 @@ const CarDataGrid = () => {
   const handleFilter = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5001/api/cars/filter?column=${filterColumn}&operator=${filterOperator}&value=${filterValue}`
+        `${BASE_URL}/api/cars/filter?column=${filterColumn}&operator=${filterOperator}&value=${filterValue}`
       );
       const data = await response.json();
       setCars(data.data);
@@ -82,7 +83,7 @@ const CarDataGrid = () => {
 
   const confirmDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:5001/api/cars/${deleteId}`, {
+      const response = await fetch(`${BASE_URL}/api/cars/${deleteId}`, {
         method: 'DELETE',
       });
       if (response.ok) {
