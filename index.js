@@ -10,6 +10,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'client', 'build')));
+
 // Connect to MongoDB
 const MONGO_URI = process.env.MONGODB_URI;
 
@@ -36,3 +39,7 @@ mongoose
     process.exit(1);
   });
 
+// Catch-all to serve index.html
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});

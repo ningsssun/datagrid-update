@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.59903d79.css",
+    "main.js": "/static/js/main.272a5a5c.js",
+    "static/media/bmw-car.png": "/static/media/bmw-car.b4b09ae04ab1b8133832.png",
+    "index.html": "/index.html",
+    "main.59903d79.css.map": "/static/css/main.59903d79.css.map",
+    "main.272a5a5c.js.map": "/static/js/main.272a5a5c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.59903d79.css",
+    "static/js/main.272a5a5c.js"
+  ]
+}
