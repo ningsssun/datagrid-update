@@ -9,7 +9,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: "*" }));
+app.use(cors({ origin: "https://car-data-grid-7f88dc4ca6a7.herokuapp.com" }));
 
 app.use('/api/cars', carRoutes);
 
