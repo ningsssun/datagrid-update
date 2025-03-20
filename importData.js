@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGODB_URI, {
   const results = [];
 
   // Read and parse the CSV file
-  fs.createReadStream('ElectricCarData.csv')
+  fs.createReadStream('./ElectricCarData.csv')
     .pipe(csv())
     .on('data', (data) => {
       results.push(data);
