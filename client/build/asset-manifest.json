@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.59903d79.css",
-    "main.js": "/static/js/main.598ddf05.js",
+    "main.js": "/static/js/main.d5bd8549.js",
     "static/media/bmw-car.png": "/static/media/bmw-car.b4b09ae04ab1b8133832.png",
     "index.html": "/index.html",
     "main.59903d79.css.map": "/static/css/main.59903d79.css.map",
-    "main.598ddf05.js.map": "/static/js/main.598ddf05.js.map"
+    "main.d5bd8549.js.map": "/static/js/main.d5bd8549.js.map"
   },
   "entrypoints": [
     "static/css/main.59903d79.css",
-    "static/js/main.598ddf05.js"
+    "static/js/main.d5bd8549.js"
   ]
 }
