@@ -11,8 +11,15 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Serve static files from the React app
+app.use('/api/cars', carRoutes);
+
+// Serve the React static files
 app.use(express.static(path.join(__dirname, 'client', 'build')));
+
+// Catch-all route for React
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});
 
 // Connect to MongoDB
 const MONGO_URI = process.env.MONGODB_URI;
@@ -39,8 +46,3 @@ mongoose
     console.error("MongoDB Connection Error:", err.message);
     process.exit(1);
   });
-
-// Catch-all to serve index.html
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-});
