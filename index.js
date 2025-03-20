@@ -7,9 +7,14 @@ const carRoutes = require('./routes/carRoutes');
 
 const app = express();
 
+const allowedOrigins = [
+  "https://car-data-grid-7f88dc4ca6a7.herokuapp.com",
+  "http://localhost:3000"
+];
+
 // Middleware
 app.use(express.json());
-app.use(cors({ origin: "https://car-data-grid-7f88dc4ca6a7.herokuapp.com" }));
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 
 app.use('/api/cars', carRoutes);
 
@@ -32,9 +37,6 @@ mongoose
   })
   .then(() => {
     console.log("MongoDB Connected");
-
-    // Use Routes
-    app.use('/api/cars', carRoutes);
 
     // Start Server
     const PORT = process.env.PORT || 5001;
