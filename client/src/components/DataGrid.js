@@ -6,7 +6,7 @@ import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material
 
 const CarDataGrid = () => {
   // Data/Pagination states
-  const BASE_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:5001";
+  const BASE_URL = "https://car-data-grid-7f88dc4ca6a7.herokuapp.com" || "http://localhost:5001";
   const navigate = useNavigate();
   const [cars, setCars] = useState([]);
   const [page, setPage] = useState(1);
