@@ -27,7 +27,6 @@ const CarDataGrid = () => {
   const fetchCars = async () => {
     try {
       const url = `${BASE_URL}/api/cars?page=${page}&limit=${pageSize}`;
-      console.log("Backend API:", process.env.REACT_APP_BACKEND_URL);
       const response = await fetch(url);
       const data = await response.json();
       setCars(data.data);
