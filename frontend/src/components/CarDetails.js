@@ -1,7 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Box, Typography, Button, Card, CardContent, CardActions, List, ListItem, ListItemText, Divider } from '@mui/material';
-import carImage from './bmw-car.png';
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import {
+  Box,
+  Typography,
+  Button,
+  Card,
+  CardContent,
+  CardActions,
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+} from "@mui/material";
+import carImage from "../styles/bmw-car.png";
+import { fetchCars } from "../services/carServices";
 
 const CarDetails = () => {
   const { id } = useParams();
@@ -9,10 +21,12 @@ const CarDetails = () => {
   const [car, setCar] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5001/api/cars/${id}`)
-      .then((response) => response.json())
-      .then((data) => setCar(data))
-      .catch((err) => console.error(err));
+    const loadCar = async () => {
+      const data = await fetchCars(id);
+      setCar(data);
+    };
+
+    loadCar();
   }, [id]);
 
   if (!car) {
@@ -29,29 +43,32 @@ const CarDetails = () => {
         p: 3,
         pl: 30,
         pr: 10,
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'flex-start',
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "flex-start",
         gap: 2,
       }}
     >
       {/* Left side: Car details */}
-      <Card sx={{ width: '50%' }}>
+      <Card sx={{ width: "50%" }}>
         <CardContent>
           <Typography variant="h5" gutterBottom>
             {car.Brand} {car.Model}
           </Typography>
-
           <List disablePadding>
             {Object.keys(car).map((key) => {
-              if (key === '_id' || key === '__v') return null;
-
+              if (key === "_id" || key === "__v") return null;
               return (
                 <React.Fragment key={key}>
                   <ListItem disablePadding>
                     <ListItemText
                       primary={
-                        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
                           <strong>{key}</strong>
                           <span>{String(car[key])}</span>
                         </Box>
@@ -70,13 +87,12 @@ const CarDetails = () => {
           </Button>
         </CardActions>
       </Card>
-
-      {/* Right side: Image */}
+      {/* Right side: Car image */}
       <Box>
         <img
           src={carImage}
           alt="Car"
-          style={{ width: '550px', height: 'auto', borderRadius: '10px' }}
+          style={{ width: "550px", height: "auto", borderRadius: "10px" }}
         />
       </Box>
     </Box>

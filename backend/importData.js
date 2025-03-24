@@ -15,10 +15,8 @@ mongoose.connect(process.env.MONGODB_URI, {
 .then(() => {
   console.log('MongoDB Atlas connected');
 
-  // Array to hold all CSV data rows
   const results = [];
 
-  // Read and parse the CSV file
   fs.createReadStream('./ElectricCarData.csv')
     .pipe(csv())
     .on('data', (data) => {
@@ -27,7 +25,6 @@ mongoose.connect(process.env.MONGODB_URI, {
     .on('end', async () => {
       console.log('CSV file read, now inserting data...');
       try {
-        // Perform a bulk insert of all rows
         await Car.insertMany(results);
         console.log('Data successfully inserted.');
       } catch (error) {

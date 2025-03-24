@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import CarDataGrid from "../components/DataGrid";
-import CarDetails from "../components/CarDetails";
+import CarDataGrid from "../src/components/DataGridContainer";
+import CarDetails from "../src/components/CarDetails";
 
 function App() {
   return (
