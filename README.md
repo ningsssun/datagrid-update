@@ -19,7 +19,7 @@ This project demonstrates a generic data grid built with React and MUI that inte
 
 ## Tech Stack
 
-- **Frontend**: React, Material UI, React Router, MUI DataGrid
+- **Frontend**: React, Material UI, React Router, React AG Grid
 - **Backend**: Node.js, Express, MongoDB, Mongoose
 
 ---
