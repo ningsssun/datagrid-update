@@ -13,7 +13,7 @@ import {
   Divider,
 } from "@mui/material";
 import carImage from "../styles/bmw-car.png";
-import { fetchCars } from "../services/carServices";
+import { fetchCarById } from "../services/carServices";
 
 const CarDetails = () => {
   const { id } = useParams();
@@ -22,7 +22,7 @@ const CarDetails = () => {
 
   useEffect(() => {
     const loadCar = async () => {
-      const data = await fetchCars(id);
+      const data = await fetchCarById(id);
       setCar(data);
     };
 

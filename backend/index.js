@@ -27,7 +27,7 @@ app.get('*', (req, res) => {
 });
 
 // Connect to MongoDB
-const MONGO_URI = process.env.MONGODB_URI;
+const MONGO_URI = process.env.MONGO_URI;
 
 mongoose
   .connect(MONGO_URI, {

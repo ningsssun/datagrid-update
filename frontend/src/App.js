@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import CarDataGrid from "../src/components/DataGridContainer";
+import CarDataGrid from "../src/components/CarDataGrid";
 import CarDetails from "../src/components/CarDetails";
 
 function App() {

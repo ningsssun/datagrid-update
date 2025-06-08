@@ -1,9 +1,8 @@
-const BASE_URL =
-  "https://car-data-grid-7f88dc4ca6a7.herokuapp.com" || "http://localhost:5001";
+const BASE_URL = "http://localhost:5001";
 
 export const fetchCars = async (page, limit) => {
   try {
-    const url = `${BASE_URL}/api/cars?page=${page}&limit=${limit}`;
+    const url = `${BASE_URL}/api/cars`;
     const response = await fetch(url);
     const data = await response.json();
     return data;
@@ -11,6 +10,15 @@ export const fetchCars = async (page, limit) => {
     console.error("Error fetching cars:", error);
     return null;
   }
+};
+
+export const fetchCarById = async (id) => {
+  const res = await fetch(`${BASE_URL}/api/cars/${id}`);
+  if (!res.ok) {
+    console.error('Error fetching car:', res.statusText);
+    return null;
+  }
+  return await res.json(); 
 };
 
 export const searchCars = async (q) => {
