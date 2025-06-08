@@ -9,7 +9,7 @@ const app = express();
 
 const allowedOrigins = [
   "https://datagrid-update.onrender.com",
-  "https://datagrid-update.onrender.com",
+  "https://datagrid-bmw.netlify.app",
   "http://localhost:3000"
 ];
 
