@@ -9,6 +9,7 @@ const app = express();
 
 const allowedOrigins = [
   "https://datagrid-update.onrender.com",
+  "https://datagrid-update.onrender.com",
   "http://localhost:3000"
 ];
 
