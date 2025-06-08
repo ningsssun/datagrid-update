@@ -19,11 +19,11 @@ app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use('/api/cars', carRoutes);
 
 // Serve the React static files
-app.use(express.static(path.join(__dirname, 'client', 'build')));
+// app.use(express.static(path.join(__dirname, 'client', 'build')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+// });
 
 // Connect to MongoDB
 const MONGO_URI = process.env.MONGO_URI;
