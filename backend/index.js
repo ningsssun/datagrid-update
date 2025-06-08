@@ -8,7 +8,7 @@ const carRoutes = require('./routes/carRoutes');
 const app = express();
 
 const allowedOrigins = [
-  "https://car-data-grid-7f88dc4ca6a7.herokuapp.com",
+  "https://datagrid-update.onrender.com",
   "http://localhost:3000"
 ];
 
